@@ -41,10 +41,12 @@ group :development do
 end
 
 group :development, :test do
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.1'
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 4.0'
   # Adds support for Capybara system testing and selenium driver
   # gem 'capybara', '>= 2.15'
