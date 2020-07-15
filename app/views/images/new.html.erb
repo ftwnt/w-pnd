@@ -1,2 +1,12 @@
-<h1>Images#new</h1>
-<p>Find me in app/views/images/new.html.erb</p>
+<h3>Upload an image</h3>
+
+<%= form_for :uploads, url: images_path, method: :post do |form| %>
+  <%= form.file_field :attachments, multiple: true %>
+  <%= form.submit 'Upload' %>
+<% end %>
+
+<% if @images.present? %>
+  <h3>Existing images</h3>
+
+  <%= render 'images/partials/images_table', images: @images %>
+<% end %>

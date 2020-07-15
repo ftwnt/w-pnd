@@ -1,0 +1,15 @@
+.flash {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid;
+
+  &.alert {
+    color: red;
+    border-color: red
+  }
+
+  &.notice {
+    color: forestgreen;
+    border-color: forestgreen
+  }
+}
