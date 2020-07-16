@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :image do
-    attachment { Rack::Test::UploadedFile.new(Tempfile.open.path, 'image/png') }
+    attachment {
+      tmp_file = Tempfile.new
+      Rack::Test::UploadedFile.new(tmp_file, 'image/png')
+      tmp_file.close
+    }
   end
 end

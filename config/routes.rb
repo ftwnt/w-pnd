@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'images#new'
 
   resources :images, only: %i[new create]
+  resources :plays, only: %i[index create]
 end
