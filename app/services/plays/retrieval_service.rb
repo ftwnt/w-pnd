@@ -29,13 +29,18 @@ module Plays
 
     def base_collection
       @base_collection = klass.take(length)
-                              .map { |item| polymorphic_url(item.attachment) }
+                              .map { |item| { url: polymorphic_url(item.attachment), id: item.id } }
                               .shuffle
     end
 
     def transform_with_indices(collection)
-      collection.each_with_object([])
-                .with_index { |(el, memo), idx| memo << { index: idx, url: el } }
+      collection.each_with_object([]).with_index do |(el, memo), idx|
+        memo << {
+          index: idx,
+          url: el[:url],
+          id: el[:id]
+        }
+      end
     end
   end
 end

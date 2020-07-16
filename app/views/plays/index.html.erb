@@ -1,22 +1,25 @@
 <%= javascript_pack_tag 'plays/index' %>
 
 <% if @game_collection.present? %>
-  <div id="game-container">
-    <h3>Timer:</h3>
-    <p id='current-timer-val'></p>
+  <%= form_for :play, url: plays_path, method: :post, remote: true do |f| %>
+    <%= f.hidden_field :timer_value, id: 'timer-value-input' %>
+    <%= f.hidden_field :image_id, id: 'image-id-input' %>
 
-    <div class="img-container">
-      <img src='#' id='current-img'/>
+    <div id="game-container">
+      <h3>Timer:</h3>
+      <p id='current-timer-val'></p>
+
+      <div class="img-container">
+        <img src='#' id='current-img'/>
+      </div>
+
+      <%= f.submit 'Play', id: 'play-btn' %>
     </div>
-
-    <%= button_tag 'Play', id: 'play-btn' %>
-  </div>
-
-  <% if @images.present? %>
-    <h3>Already played</h3>
-
-    <%= render 'plays/partials/plays_table', plays: @plays %>
   <% end %>
+
+  <div id='played-games'>
+    <%= render partial: 'plays/partials/plays_table', locals: { plays: @plays } %>
+  </div>
 <% else %>
   <h3>Upload images to start a game :)</h3>
 <% end %>
